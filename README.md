@@ -1,6 +1,6 @@
 # Duel-Zone - Online Gaming Website using HTML, CSS, Bootstrap & JavaScript
 
-GameSpace
-This is a website I created as a project for Web Development course in my college that I created using HTML, CSS and bootstrap and all the website has JavaScript for backend. Really responsible and easy to understand.
+**Duel-zone**
+Il s'agit d'un site Web que j'ai créé dans le cadre d'un projet pour un cours de développement Web dans mon collège, que j'ai créé à l'aide de HTML, CSS et bootstrap et tout le site Web a JavaScript pour le backend. Vraiment responsable et facile à comprendre.
 
-LIVE-DEMO: https://gamespace-website.netlify.app/
+LIVE-DEMO:https://kouakou669.github.io/projet-/
