@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Gaming Website">
+  <meta name="author" content="">
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+  <title>GameSpace</title>
+  <!--stylesheet-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="styles/gamesstyle.css" rel="stylesheet" type="text/css">
+  <link href="styles/custom-responsive-styles.css" rel="stylesheet" type="text/css">
+  <!--scripts-->
+  <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="scripts/plugins-activate.js"></script>
+  <script type="text/javascript" src="scripts/search.js"></script>
+</head>
+
+<body id="page-top">
+
+
+
+  <!-- Navigation Bar -->
+  <div class="logo">
+    <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.png" alt="alternative"></a>
+  </div>
+  <div class="profile">
+    <a class="navbar-brand logo-image" href="#" title="You are playing as Guest (need to login)" data-toggle="modal" data-target="#ProfileModal"><img src="images/member.png" alt="alternative" width="40" height="40"><b>Guest</b></a>
+  </div>
+  <div class="highscore">
+    <a class="navbar-brand logo-image" title="Track your highcores (need to login) " href="#" data-toggle="modal" data-target="#HighscoreModal"><img src="images/highscore.jpg" alt="alternative" width="40" height="40"><b>Highscores</b></a>
+  </div>
+    <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="smooth-scroll" href="#Header"></a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="gamelib.html">Games Library</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="login.html">Login</a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+
+
+<!--HEADER SECTION-->
+<section id="Banner" class="content-section">
+<div class="container content-wrap text-center">
+   <div class="container-h1">
+  <h1 class="playhead"> PLAY! </h1> <br>
+
+
+
+
+
+<!-- AUTO SCROLL- clicking "Play" will take you to the game section where you can see games also for clicking search icon-->
+<script>
+
+$(".playhead").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+        scrollTop: $("#games-section").offset().top + offset
+    }, 2000);
+})
+</script>
+
+<script>
+$(document).ready ( function () {
+$("#searchicon").click(function() {
+    var offset = 20; //Offset of 20px
+
+    $('html, body').animate({
+        scrollTop: $("#games-section").offset().top + offset
+    }, 1000);
+});
+});
+</script>
+<!--End of auto scroll script-->
+
+
+
+
+
+
+<div class="row justify-content-center">
+    <h5> <em>In order to play more games login now.</em> </h5>
+  </div>
+</div>
+
+
+
+
+
+<!--Upper section of the games section for search bar,etc-->
+<div class="container-fluid">
+  <div class="search-container">
+    <form action="">
+        <div class="d-flex justify-content-center px-5">
+            <div class="search"> <form id="searchForm"> <input type="search" id="searchbar" class="search-input" placeholder="Search game..." onkeyup="Search()" onsearch="Search()" onclick="Search()">
+            <a class="search-icon" id="searchicon" > <i class="fa fa-search" id="sicon"></i> </a> </form> </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+<!--To prevent the page from reloading when we click enter in the search input box-->
+<script>
+  $('#searchbar').keypress(function (e) {
+       if (e.which == 13) {
+            e.preventDefault();
+       }
+});
+</script>
+
+
+
+
+
+
+
+<div div class="container-fluid d-flex justify-content-center px-5">
+<div class="row">
+
+  <div class="col col-lg-4">
+      <div class="card">
+          <div class="card-body">
+            2D
+          </div>
+      </div>
+      <div class="card">
+         <div class="card-body">
+          Action
+          </div>
+      </div>
+
+      <div class="card">
+          <div class="card-body">
+            Adventure
+          </div>
+      </div>
+      <div class="card">
+          <div class="card-body">
+            Casual
+          </div>
+      </div>
+  </div>
+
+    <div class="col col-lg-4">
+        <div class="card">
+          <div class="card-body">
+           Combat
+          </div>
+        </div>
+
+        <div class="card">
+           <div class="card-body">
+            Multiplayer
+          </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+               Puzzle
+              </div>
+            </div>
+        <div class="card">
+          <div class="card-body">
+            Racing
+             </div>
+        </div>
+      </div>
+    <div class="col col-lg-4">
+      <div class="card">
+        <div class="card-body">
+        RPG
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+        Survival
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+        Typing
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+        Trivia
+        </div>
+      </div>
+  </div>
+
+
+
+
+
+
+<div class="row row-1">
+  <div class="card justify-content-center" style="width: 10rem; margin: auto; background: #536bf6">
+    <div class="card-body">
+      Find out more
+    </div>
+  </div>
+</div>
+
+
+</div>
+</section>
+
+
+
+
+
+
+<!--this function to change overflow as the bootsrap cards tends to oveflow in small screen-->
+<script type="text/javascript">
+  setInterval(function scroll(){
+  var width = window.innerWidth;
+  if (width < 1000){
+    document.getElementById("Banner").style.overflowY = 'scroll';
+  }
+  else{
+    document.getElementById("Banner").style.overflowY = 'visible';
+  }
+}, 1000)
+scroll()
+</script>
+
+
+
+
+
+
+<!-- Game Section using boostrap cards-->
+<section id="games-section">
+
+  <div class="dropdown">
+        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Recommended
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Sort games by - Name(A-Z)</a>
+            <a class="dropdown-item" href="#">Sort games by - Time</a>
+            <a class="dropdown-item" href="#">Sort games by - Rating</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </div>
+
+    <div class="container-fluid">
+      <div class="row">
+
+
+        <div class="col col-lg-3 thumbnail" id="tennisgame">
+          <div class="card card-body">
+          <div class="hovereffect">
+            <div class="col-md-12 photo-1" ></div>
+              <a href="#mybox" data-toggle="modal" data-slide-to="0">
+                <div class="overlay">
+                  <h2>Tennis Game</h2>
+                  <p>Causal</p>
+                </div>
+              </a>
+          </div>
+          <h1> Tennis Game <br> <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div></h1>
+          <a href="games/TennisGame/TennisGame.html" target="_blank" class="highlight-button btn border-danger btn-medium button xs-margin-bottom-five" data-abc="true"><i class="fa fa-play"></i><b>Play</b> </a> <br>
+        </div>
+        </div>
+
+
+        <div class="col col-lg-3 thumbnail" id="quizgame">
+          <div class="card card-body">
+          <div class="hovereffect">
+            <div class="col-md-12 photo-2"></div>
+              <a href="#mybox" data-toggle="modal" data-slide-to="1">
+                <div class="overlay">
+                  <h2>Quick Quiz (AWD)</h2>
+                  <p>Eductional</p>
+                </div>
+              </a>
+          </div>
+          <h1> Quick Quiz  <br> <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div></h1>
+          <a href="games/Quiz/index.html" target="_blank" class="highlight-button btn border-danger btn-medium button xs-margin-bottom-five" data-abc="true"><i class="fa fa-play"></i><b>Play</b></a>
+        </div>
+        </div>
+
+
+        <div class="col col-lg-3 thumbnail" id="snakegame">
+          <div class="card card-body">
+          <div class="hovereffect">
+            <div class="col-md-12 photo-4"></div>
+              <a href="#mybox" data-toggle="modal" data-slide-to="3">
+                <div class="overlay">
+                  <h2>Snake Game</h2>
+                  <p>Arcade</p>
+                </div>
+              </a>
+          </div>
+          <h1> Snake Game  <br> <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div></h1>
+          <a href="games/snake/snakegame.html" target="_blank" class="highlight-button btn border-danger btn-medium button xs-margin-bottom-five" data-abc="true"><i class="fa fa-play"></i><b> Play </b></a>
+        </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col col-lg-3 thumbnail" id="tetrisgame">
+          <div class="card card-body">
+          <div class="hovereffect">
+            <div class="col-md-12 photo-3"></div>
+              <a href="#mybox" data-toggle="modal" data-slide-to="2">
+                <div class="overlay">
+                  <h2>Tetris</h2>
+                  <p>Arcade</p>
+                </div>
+              </a>
+          </div>
+          <h1> Tetris  <br> <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div></h1>
+          <a href="games/tetris/index.html" target="_blank" class="highlight-button btn border-danger btn-medium button xs-margin-bottom-five" data-abc="true"><i class="fa fa-play"></i><b>Play</b></a>
+        </div>
+        </div>
+
+
+        <div class="col col-lg-3 thumbnail" id="ludogame">
+          <div class="card card-body">
+          <div class="hovereffect">
+            <div class="col-md-12 photo-5"></div>
+              <a href="#mybox" data-toggle="modal" data-slide-to="3">
+                <div class="overlay">
+                  <h2>Ludo-Master</h2>
+                  <p>Causal</p>
+                </div>
+              </a>
+          </div>
+          <h1> Ludo-Master  <br> <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div></h1>
+          <a href="games/ludo/Ludo-game.html" target="_blank" class="highlight-button btn border-danger btn-medium button xs-margin-bottom-five" data-abc="true"><i class="fa fa-play"></i><b> Play </b></a>
+        </div>
+        </div>
+
+
+        <div class="col col-lg-3 thumbnail" >
+          <div class="card card-body">
+          <div class="hovereffect">
+              <a href="#mybox" data-toggle="modal" data-slide-to="3">
+              </a>
+          </div>
+          <div class="justify-content-center">
+          <h1> To Enjoy more games </h1>
+          <a href="login.html" target="_blank" class="highlight-button btn border-danger btn-medium button xs-margin-bottom-five" data-abc="true"><i class="fa fa-user"></i><b> Login Now! </b></a> </div>
+        </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+<!--pagination-->
+<div class="container d-flex justify-content-center mt-50 mb-50">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous" style="color: black;">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li class="page-item"><a class="page-link" href="#" style="color: black;">1</a></li>
+    <li class="page-item"><a class="page-link" href="#" style="color: black;">2</a></li>
+    <li class="page-item"><a class="page-link" href="#" style="color: black;">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next" style="color: black;">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+</ul>
+</div>
+
+
+
+
+<!-- Footer Section Of the Page -->
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="javascript:void(0)">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="javascript:void(0)">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white" href="javascript:void(0)">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+        </li>
+      </ul>
+      <p class="text-muted small mb-0">Copyright © GameSpace 2021</p>
+      <p class="text-muted small mb-0">AWD Project.</p>
+    </div>
+  </footer>
+
+
+
+
+<!-- Highscore Modal -->
+<div
+  class="modal fade"
+  id="HighscoreModal"
+  tabindex="-1"
+  aria-labelledby="HighscoreModalLabel"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Highscores</h4>
+        <button
+        type="button"
+        class="btn-close"
+        data-dismiss="modal" aria-hidden="true"
+        aria-label="Close"
+        style = "background-color: white; border: none;"
+        >x</button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Game name</th>
+              <th scope="col">Score</th>
+              <th scope="col">Rank</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Tennis Game</td>
+              <td>10/0</td>
+              <td>none</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Quick Quiz</td>
+              <td>5/5</td>
+              <td>none</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Snake Game</td>
+              <td>999</td>
+              <td>none</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Tetris</td>
+              <td>999</td>
+              <td>none</td>
+            </tr>
+            <tr>
+             <th scope="row">5</th>
+              <td>Ludo</td>
+              <td>#</td>
+              <td>none</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-mdb-dismiss="modal" data-dismiss="modal" aria-hidden="true" >
+        Close
+        </button>
+        <button type="button" class="btn btn-info btn-sm">Find out more</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Profile Modal-->
+<div
+  class="modal fade"
+  id="ProfileModal"
+  tabindex="-1"
+  aria-labelledby="ProfileModalLabel"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Profile</h4>
+        <button
+        type="button"
+        class="btn-close"
+        data-dismiss="modal" aria-hidden="true"
+        aria-label="Close"
+        style = "background-color: white; border: none;"
+        >x</button>
+      </div>
+      <div class="modal-body">
+        <div class="justify-content-center">
+          <center><img src="images/member.png" alt="alternative" width="175" height="175"></center>
+          <center><h1>You are in Guest Mode...</h1> <p> Login to see your profile.</p></center>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-mdb-dismiss="modal" data-dismiss="modal" aria-hidden="true" >
+        Close
+        </button>
+        <button type="button" class="btn btn-info btn-sm" onClick="window.open('login.html')">LogIn</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+
+</html>
