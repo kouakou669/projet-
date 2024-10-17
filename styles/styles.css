@@ -40,8 +40,6 @@ a:hover {
   color: var(--accent-color);
 }
 
-
-
 /* Navigation */
 #sidebar-wrapper {
   position: fixed;
@@ -79,12 +77,12 @@ a:hover {
 }
 
 #sidebar-wrapper.active {
-    transform: translateX(0); /* Affiche le menu */
+    transform: translateX(0);
 }
 
 /* En-tête */
 #Banner {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(' https://iili.io/2d6vTDg.jpg') center center no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(' https://iili.io/2d6vTDg.jpg ') center center no-repeat;
   background-size: cover;
   padding: 100px 0;
   color: var(--light-text-color);
@@ -141,7 +139,7 @@ a:hover {
   display: block;
   width: 50px;
   height: 3px;
-  background-color: var(--accent-color); /* Changer cette couleur pour une couleur attirante */
+  background-color: var(--primary-color);
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -169,15 +167,12 @@ a:hover {
     height: 100px;
 }
 
-
-
-
 /* Contactez-nous */
 .contact-wrapper, .form-wrap {
-    border: 1px solid #ddd; /* Bordure autour des sections */
-    border-radius: 10px; /* Coins arrondis */
-    padding: 20px; /* Espacement intérieur */
-    margin-bottom: 20px; /* Espacement inférieur */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .floating-label {
@@ -221,31 +216,8 @@ a:hover {
 }
 
 .form-group {
-    margin-bottom: 15px; /* Espacement entre les champs */
+    margin-bottom: 15px;
 }
-
-/* Styles pour le bouton d'envoi */
-.submit-btn .btn {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    cursor: pointer; /* Change le curseur sur hover */
-}
-
-.submit-btn .btn:hover {
-    background-color: var(--secondary-color);
-}
-
-
-
-
-
-
-
 
 /* Bouton d'envoi */
 .submit-btn .btn {
@@ -374,13 +346,13 @@ footer.footer .social-link:hover {
     width: 200px;
     height: 100%;
     transition: all 0.4s ease;
-    transform: translateX(200px); /* Masqué par défaut */
-    background: #333; /* Couleur de fond du menu */
-    color: white; /* Couleur du texte */
+    transform: translateX(200px);
+    background: #333;
+    color: white;
 }
 
 #sidebar-wrapper.active {
-    transform: translateX(0); /* Affiche le menu */
+    transform: translateX(0);
 }
 
 .menu-toggle {
@@ -394,7 +366,7 @@ footer.footer .social-link:hover {
 }
 
 .menu-toggle.active {
-    color: red; /* Changer la couleur lorsque le menu est ouvert */
+    color: red;
 }
 
 /* Animation pour le texte */
@@ -417,13 +389,12 @@ footer.footer .social-link:hover {
     50% { border-color: black; }
 }
 
-
 /* Styles pour les cartes */
 .team-members {
-    display: flex; /* Utilise flexbox pour l'affichage horizontal */
-    justify-content: space-around; /* Espace entre les cartes */
-    flex-wrap: nowrap; /* Empêche les cartes de passer à la ligne */
-    overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .card {
@@ -432,13 +403,50 @@ footer.footer .social-link:hover {
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 15px; /* Espace autour des cartes */
-    min-width: 200px; /* Largeur minimale des cartes */
+    margin: 15px;
+    min-width: 200px;
+    perspective: 1000px;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background-color: #fff;
+    color: #333;
+}
+
+.card-back {
+    background-color: #333;
+    color: #fff;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
 }
 
 .card img {
@@ -450,7 +458,6 @@ footer.footer .social-link:hover {
     padding: 15px;
 }
 
-/* Styles pour les boutons */
 .btn-primary {
     background-color: var(--primary-color);
     color: var(--light-text-color);
@@ -464,5 +471,54 @@ footer.footer .social-link:hover {
 
 .btn-primary:hover {
     background-color: var(--secondary-color);
+}
+
+/* Styles pour les cartes de service */
+.service-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+}
+
+.service-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.service-content {
+  text-align: center;
+}
+
+.btn-more {
+  display: inline-block;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-more:hover {
+  background-color: #357ABD;
+}
+
+.text-center {
+  margin-top: 30px;
 }
 
