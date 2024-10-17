@@ -473,35 +473,53 @@ h5 {
 
 
 
+
 /* 7. Footer Styles */
 footer.footer {
-  padding-top: 70px;
-  padding-bottom: 70px;
-  background-color: #dcdee0;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: #dcdee0;
+    opacity: 0; /* Démarre comme invisible */
+    transform: translateY(20px); /* Démarre décalé vers le bas */
+    animation: slide-up 0.5s forwards; /* Animation d'apparition */
 }
+
+@keyframes slide-up {
+    to {
+        opacity: 1; /* Devient visible */
+        transform: translateY(0); /* Retourne à la position normale */
+    }
+}
+
 footer.footer .social-link {
-  display: block;
-  height: 50px;
-  width: 50px;
-  font-size: 20px;
-  background-color: #02ccba;
-  color: #fff;
-  border: none;
-  padding: 10px;
+    display: block;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    background-color: #02ccba;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    transition: background-color 0.3s; /* Transition pour le changement de couleur */
 }
+
 footer.footer .social-link:hover {
-	background-color: #07bcab;
+    background-color: #07bcab;
 }
+
 footer.footer p.small a {
-	color: #636c72;
-	text-decoration: none;
+    color: #636c72;
+    text-decoration: none;
 }
-footer.footer p.small a:hover, footer.footer p.small a.focus {
-	color: #02ccba;
-	text-decoration: none;
+
+footer.footer p.small a:hover, 
+footer.footer p.small a.focus {
+    color: #02ccba;
+    text-decoration: none;
 }
+
 #Contact .address-block span {
-	text-transform: none;
+    text-transform: none;
 }
 
 
