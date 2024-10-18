@@ -12,6 +12,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="styles/styles.css" rel="stylesheet">
+
+<!--scripts-->
+    <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/all-plugins.js"></script>
+    <script type="text/javascript" src="scripts/plugins-activate.js"></script>
+  
+    
 </head>
 <body id="page-top">
 
@@ -267,28 +274,6 @@
         </div>
     </footer>
 
-    <!-- Script JavaScript pour le menu -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const sidebarWrapper = document.getElementById('sidebar-wrapper');
-            const menuIcon = document.getElementById('menu-icon');
-
-            menuToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                sidebarWrapper.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-
-                // Change l'icône en fonction de l'état du menu
-                if (sidebarWrapper.classList.contains('active')) {
-                    menuIcon.classList.remove('fa-bars');
-                    menuIcon.classList.add('fa-times'); // Icône croix
-                } else {
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars'); // Icône barre
-                }
-            });
-        });
-    </script>
+    
 </body>
 </html>
