@@ -381,7 +381,7 @@ footer.footer .social-link:hover {
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid;
-    animation: typing 10s steps(12) forwards, blink-caret 0.75s step-end infinite;
+    animation: typing 5s steps(12) forwards, blink-caret 0.75s step-end infinite;
 }
 
 @keyframes blink-caret {
