@@ -13,26 +13,18 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="styles/styles.css" rel="stylesheet">
 
-<!--scripts-->
-    <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="scripts/all-plugins.js"></script>
-    <script type="text/javascript" src="scripts/plugins-activate.js"></script>
-  
-    
 </head>
 <body id="page-top">
 
-
-
-    
     <!-- Barre de Navigation -->
     <div class="logo">
-        <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.png1" alt="Duel-zone"></a>
+        <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.png" alt="Duel-zone"></a>
     </div>
     <a class="menu-toggle" href="#">
         <i class="fa fa-bars" id="menu-icon"></i>
     </a>
     <nav id="sidebar-wrapper">
+        <span class="close-menu" id="close-menu">&times;</span> <!-- Bouton croix -->
         <ul class="sidebar-nav">
             <li class="sidebar-nav-item"><a class="smooth-scroll" href="#page-top">Accueil</a></li>
             <li class="sidebar-nav-item"><a class="smooth-scroll" href="#Services">Bibliothèque de Jeux</a></li>
@@ -41,8 +33,7 @@
             <li class="sidebar-nav-item"><a class="smooth-scroll" href="#Contact">Contactez-nous</a></li>
         </ul>
     </nav>
-
-
+    <div class="overlay"></div>
 
     <!-- En-tête -->
     <section id="Banner" class="content-section">
@@ -55,79 +46,66 @@
         <div class="overlay"></div>
     </section>
 
-
-
-
-
-<!-- SECTION BIBLIOTHÈQUE DE JEUX -->
-<section id="Services" class="content-section">
-  <div class="container">
-    <div class="block-heading">
-      <h2>Bibliothèque de Jeux</h2>
-      <p>Nous proposons toutes sortes de jeux sur la plateforme Duel-zone pour tous les goûts.</p>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="service-card">
-          <div class="service-icon" style="background-color: #4a90e2;">
-            <i class="fa fa-gamepad"></i>
-          </div>
-          <div class="service-content">
-            <h3>Action</h3>
-            <p>Les jeux d'action mettent l'accent sur les défis physiques.</p>
-          </div>
+    <!-- SECTION BIBLIOTHÈQUE DE JEUX -->
+    <section id="Services" class="content-section">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Bibliothèque de Jeux</h2>
+                <p>Nous proposons toutes sortes de jeux sur la plateforme Duel-zone pour tous les goûts.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon" style="background-color: #4a90e2;">
+                            <i class="fa fa-gamepad"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Action</h3>
+                            <p>Les jeux d'action mettent l'accent sur les défis physiques.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon" style="background-color: #50c878;">
+                            <i class="fa fa-puzzle-piece"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Puzzle</h3>
+                            <p>Les jeux de puzzle testent votre logique et votre réflexion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon" style="background-color: #ff6b6b;">
+                            <i class="fa fa-soccer-ball-o"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Sport</h3>
+                            <p>Vivez des émotions fortes avec nos jeux de sport.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon" style="background-color: #e67e22;">
+                            <i class="fa fa-car"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Course</h3>
+                            <p>Testez vos compétences de conduite avec nos jeux de course.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="bibliojeux.html"><h5>EN SAVOIR PLUS SUR LA BIBLIOTHÈQUE DE JEUX</h5></a>
+            </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="service-card">
-          <div class="service-icon" style="background-color: #50c878;">
-            <i class="fa fa-puzzle-piece"></i>
-          </div>
-          <div class="service-content">
-            <h3>Puzzle</h3>
-            <p>Les jeux de puzzle testent votre logique et votre réflexion.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="service-card">
-          <div class="service-icon" style="background-color: #ff6b6b;">
-            <i class="fa fa-soccer-ball-o"></i>
-          </div>
-          <div class="service-content">
-            <h3>Sport</h3>
-            <p>Vivez des émotions fortes avec nos jeux de sport.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="service-card">
-          <div class="service-icon" style="background-color: #e67e22;">
-            <i class="fa fa-car"></i>
-          </div>
-          <div class="service-content">
-            <h3>Course</h3>
-            <p>Testez vos compétences de conduite avec nos jeux de course.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center">
-      <a href="letsgetstarted.html" <h5>EN SAVOIR PLUS SUR LA BIBLIOTHÈQUE DE JEUX</h5></a>
-    </div>
-  </div>
-</section>
-
-
-
-    
-    
-
-
-
-
+    </section>
 
     <!-- À Propos -->
     <section id="About" class="content-section">
@@ -182,85 +160,69 @@
             </div>
         </div>
     </section>
-    
-    
-    
 
-
-
-<!-- Contactez-nous -->
-<section id="Contact" class="content-section">
-    <div class="container">
-        <div class="block-heading">
-            <h2>Contactez-nous</h2>
-            <p>Envoyez-nous un message concernant vos suggestions sur notre plateforme WhatsApp.</p>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="contact-wrapper card">
-                    <div class="address-block border-bottom">
-                        <h3 class="add-title">LOCALISATION</h3>
-                        <p><i class="fa fa-map-marker"></i> Africa, ABIDJAN, Yopougon</p>
-                        <p><i class="fa fa-phone"></i> +225 0705607226</p>
-                        <p><i class="fa fa-envelope"></i> <a href="mailto:kouamedjakiss22@gmail.com">kouamedjakiss22@gmail.com</a></p>
+    <!-- Contactez-nous -->
+    <section id="Contact" class="content-section">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Contactez-nous</h2>
+                <p>Envoyez-nous un message concernant vos suggestions sur notre plateforme WhatsApp.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-wrapper card">
+                        <div class="address-block border-bottom">
+                            <h3 class="add-title">LOCALISATION</h3>
+                            <p><i class="fa fa-map-marker"></i> Africa, ABIDJAN, Yopougon</p>
+                            <p><i class="fa fa-phone"></i> +225 0705607226</p>
+                            <p><i class="fa fa-envelope"></i> <a href="mailto:kouamedjakiss22@gmail.com">kouamedjakiss22@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-wrap card">
+                        <h3 class="info-title">REMPLISSEZ VOS INFORMATIONS</h3>
+                        <div class="separator"></div>
+                        <form action="javascript:void(0)" method="post">
+                            <div class="form-group">
+                                <h4 class="sub-title">Prénom</h4>
+                                <div class="floating-label">
+                                    <input type="text" class="floating-input" name="first_name" id="first_name" placeholder="Ex: Brow" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="sub-title">Nom</h4>
+                                <div class="floating-label">
+                                    <input type="text" class="floating-input" name="last_name" id="last_name" placeholder="Ex: THOMAS-TECH" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="sub-title">E-mail</h4>
+                                <div class="floating-label">
+                                    <input type="email" class="floating-input" name="email" id="email" placeholder="Ex: kouamedjakiss765@gmail.com" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="sub-title">Mobile</h4>
+                                <div class="floating-label">
+                                    <input type="tel" class="floating-input" name="mobile" id="mobile" placeholder="Ex: +225 0705607226" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4 class="sub-title">Message</h4>
+                                <div class="floating-label">
+                                    <textarea class="floating-input" name="message" id="message" placeholder="Ex: Votre message ici..." required></textarea>
+                                </div>
+                            </div>
+                            <div class="submit-btn">
+                                <button type="submit" class="btn">Envoyer</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-wrap card">
-                    <h3 class="info-title">REMPLISSEZ VOS INFORMATIONS</h3>
-                    <div class="separator"></div>
-                    <form action="javascript:void(0)" method="post">
-                        <div class="form-group">
-                            <h4 class="sub-title">Prénom</h4>
-                            <div class="floating-label">
-                                <input type="text" class="floating-input" name="first_name" id="first_name" placeholder="Ex: Brow" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <h4 class="sub-title">Nom</h4>
-                            <div class="floating-label">
-                                <input type="text" class="floating-input" name="last_name" id="last_name" placeholder="Ex: THOMAS-TECH" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <h4 class="sub-title">E-mail</h4>
-                            <div class="floating-label">
-                                <input type="email" class="floating-input" name="email" id="email" placeholder="Ex: kouamedjakiss765@gmail.com" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <h4 class="sub-title">Mobile</h4>
-                            <div class="floating-label">
-                                <input type="tel" class="floating-input" name="mobile" id="mobile" placeholder="Ex: +225 0705607226" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <h4 class="sub-title">Message</h4>
-                            <div class="floating-label">
-                                <textarea class="floating-input" name="message" id="message" placeholder="Ex: Votre message ici..." required></textarea>
-                            </div>
-                        </div>
-                        <div class="submit-btn">
-                            <button type="submit" class="btn">Envoyer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
-
-
-
- 
- 
- 
- 
-
-
-
-
+    </section>
 
     <!-- Pied de Page -->
     <footer class="footer text-center">
@@ -274,6 +236,5 @@
         </div>
     </footer>
 
-    
 </body>
 </html>
