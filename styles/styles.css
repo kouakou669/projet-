@@ -145,6 +145,10 @@ a:hover {
   transform: translateX(-50%);
 }
 
+
+
+
+
 /* Membres de l'Équipe */
 .team-members {
     display: flex;
@@ -153,18 +157,42 @@ a:hover {
     gap: 20px;
 }
 
-.item {
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 15px; /* Ajout de padding pour l'espace interne */
+    border: 1px solid #ddd; /* Optionnel : pour une bordure autour des cartes */
+    border-radius: 10px; /* Optionnel : pour des coins arrondis */
 }
 
 .img-circle {
     border-radius: 50%;
     width: 100px;
     height: 100px;
+    margin-bottom: 12px; /* Ajout d'un espace entre l'image et le texte */
 }
+
+.card-body {
+    margin-top: 12px; /* Espace au-dessus du texte dans card-body */
+}
+
+.testimonial-name {
+    margin: 6px 0; /* Espace au-dessus et en dessous du nom */
+}
+
+.btn {
+    margin-top: 12px; /* Espace au-dessus du bouton */
+}
+
+
+
+
+
+
+
+
 
 /* Contactez-nous */
 .contact-wrapper, .form-wrap {
@@ -236,32 +264,54 @@ a:hover {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+
+
+
 /* Pied de page */
 footer.footer {
-  padding: 40px 0;
-  background-color: var(--dark-bg-color);
-  color: var(--light-text-color);
-  border-top: 4px solid var(--accent-color);
+    padding: 40px 0;
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
+    border-top: 4px solid var(--accent-color);
+    text-align: center; /* Centrer le texte */
+}
+
+footer.footer .social-links {
+    display: flex; /* Utiliser flexbox pour l'alignement horizontal */
+    justify-content: center; /* Centrer les liens */
+    list-style: none; /* Supprimer les puces de la liste */
+    padding: 0; /* Supprimer le padding par défaut */
 }
 
 footer.footer .social-link {
-  display: inline-block;
-  height: 35px;
-  width: 35px;
-  line-height: 35px;
-  font-size: 18px;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  margin: 0 8px;
-  transition: all 0.3s ease;
+    display: inline-block;
+    height: 40px; /* Augmenter la taille pour un meilleur aspect */
+    width: 40px; /* Augmenter la taille pour un meilleur aspect */
+    line-height: 40px; /* Centrer l'icône verticalement */
+    font-size: 20px; /* Augmenter la taille de l'icône */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin: 0 12px; /* Augmenter l'espacement entre les icônes */
+    transition: all 0.3s ease;
 }
 
 footer.footer .social-link:hover {
-  background-color: var(--accent-color);
-  transform: translateY(-3px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+footer.footer p {
+    margin-top: 20px; /* Ajouter un espace entre les icônes et le texte */
+}
+
+
+
+
+
+
+
 
 /* Responsive design */
 @media (max-width: 768px) {
