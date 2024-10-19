@@ -369,7 +369,7 @@ nav ul li a:hover {
     left: 0;
     width: 250px;
     height: 100%;
-    background: #0096ff;
+    background: #ffcc00;
     z-index: 1000;
     transition: transform 0.3s ease;
 }
