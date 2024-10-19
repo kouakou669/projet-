@@ -116,6 +116,9 @@
             </div>
         </div>
     </section>
+    
+    
+    
 
     <!-- Membres de l'Équipe -->
     <section id="Testimonials" class="content-section">
@@ -161,82 +164,119 @@
         </div>
     </section>
 
-    <!-- Contactez-nous -->
-    <section id="Contact" class="content-section">
-        <div class="container">
-            <div class="block-heading">
-                <h2>Contactez-nous</h2>
-                <p>Envoyez-nous un message concernant vos suggestions sur notre plateforme WhatsApp.</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="contact-wrapper card">
-                        <div class="address-block border-bottom">
-                            <h3 class="add-title">LOCALISATION</h3>
-                            <p><i class="fa fa-map-marker"></i> Africa, ABIDJAN, Yopougon</p>
-                            <p><i class="fa fa-phone"></i> +225 0705607226</p>
-                            <p><i class="fa fa-envelope"></i> <a href="mailto:kouamedjakiss22@gmail.com">kouamedjakiss22@gmail.com</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-wrap card">
-                        <h3 class="info-title">REMPLISSEZ VOS INFORMATIONS</h3>
-                        <div class="separator"></div>
-                        <form action="javascript:void(0)" method="post">
-                            <div class="form-group">
-                                <h4 class="sub-title">Prénom</h4>
-                                <div class="floating-label">
-                                    <input type="text" class="floating-input" name="first_name" id="first_name" placeholder="Ex: Brow" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h4 class="sub-title">Nom</h4>
-                                <div class="floating-label">
-                                    <input type="text" class="floating-input" name="last_name" id="last_name" placeholder="Ex: THOMAS-TECH" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h4 class="sub-title">E-mail</h4>
-                                <div class="floating-label">
-                                    <input type="email" class="floating-input" name="email" id="email" placeholder="Ex: kouamedjakiss765@gmail.com" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h4 class="sub-title">Mobile</h4>
-                                <div class="floating-label">
-                                    <input type="tel" class="floating-input" name="mobile" id="mobile" placeholder="Ex: +225 0705607226" required />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h4 class="sub-title">Message</h4>
-                                <div class="floating-label">
-                                    <textarea class="floating-input" name="message" id="message" placeholder="Ex: Votre message ici..." required></textarea>
-                                </div>
-                            </div>
-                            <div class="submit-btn">
-                                <button type="submit" class="btn">Envoyer</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Pied de Page -->
-    <footer class="footer text-center">
-        <div class="container">
-            <ul class="list-inline">
-                <li class="list-inline-item"><a class="social-link" href="#"><i class="fa fa-facebook"></i></a></li>
-                <li class="list-inline-item"><a class="social-link" href="#"><i class="fa fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a class="social-link" href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-            <p class="text-muted small mb-0">Copyright © Duel-zone 2024-2025</p>
+
+   
+   <!-- Contactez-nous -->
+<section id="Contact" class="content-section">
+    <div class="container">
+        <div class="block-heading">
+            <h2>Contactez-nous</h2>
+            <p>Envoyez-nous un message concernant vos suggestions sur notre plateforme WhatsApp.</p>
         </div>
-    </footer>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-wrapper card">
+                    <div class="address-block border-bottom">
+                        <h3 class="add-title">LOCALISATION</h3>
+                        <p><i class="fa fa-map-marker"></i> Africa, ABIDJAN, Yopougon</p>
+                        <p><i class="fa fa-phone"></i> +225 0705607226</p>
+                        <p><i class="fa fa-envelope"></i> <a href="mailto:kouamedjakiss22@gmail.com">kouamedjakiss22@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-wrap card">
+                    <h3 class="info-title">SUPPORT D'AIDE POUR UN PROBLÈME</h3>
+                    <div class="separator"></div>
+                    <form id="contactForm" onsubmit="sendEmail(event)">
+                        <div class="form-group">
+                            <h4 class="sub-title">Prénom</h4>
+                            <div class="floating-label">
+                                <input type="text" class="floating-input" name="first_name" id="first_name" placeholder="Ex: Brow" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="sub-title">Nom</h4>
+                            <div class="floating-label">
+                                <input type="text" class="floating-input" name="last_name" id="last_name" placeholder="Ex: THOMAS-TECH" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="sub-title">E-mail</h4>
+                            <div class="floating-label">
+                                <input type="email" class="floating-input" name="email" id="email" placeholder="Ex: kouamedjakiss765@gmail.com" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="sub-title">Mobile WhatsApp</h4>
+                            <div class="floating-label">
+                                <input type="tel" class="floating-input" name="mobile" id="mobile" placeholder="Ex: +225 0705607226" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="sub-title">Message</h4>
+                            <div class="floating-label">
+                                <textarea class="floating-input" name="message" id="message" placeholder="Ex: Votre message de problème ici..." required></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-btn">
+                            <button type="submit" class="btn">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function sendEmail(event) {
+    event.preventDefault(); // Empêche l'envoi du formulaire standard
+
+    const firstName = document.getElementById('first_name').value;
+    const lastName = document.getElementById('last_name').value;
+    const email = document.getElementById('email').value;
+    const mobile = document.getElementById('mobile').value;
+    const message = document.getElementById('message').value;
+
+    // Créez le lien mailto
+    const mailtoLink = `mailto:kouamedjakiss766@gmail.com?subject=Contact%20Form%20Submission&body=Prénom:%20${encodeURIComponent(firstName)}%0ANom:%20${encodeURIComponent(lastName)}%0AE-mail:%20${encodeURIComponent(email)}%0AMobile:%20${encodeURIComponent(mobile)}%0AMessage:%20${encodeURIComponent(message)}`;
+
+    // Ouvre le client de messagerie
+    window.location.href = mailtoLink;
+}
+</script>
+
+   
+   
+   
+    
+    
+<!-- Pied de Page -->
+<footer class="footer text-center">
+    <div class="container">
+        <ul class="list-inline social-links">
+            <li class="list-inline-item"><a class="social-link" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a class="social-link" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a class="social-link" href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li class="list-inline-item"><a class="social-link" href="https://wa.me/+2250705607226" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright © Duel-zone 2024-2025</p>
+    </div>
+</footer>
+
+   
+   
+   
+   
+   
+   
+    
+    
 
     <script>
+        
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
             const sidebarWrapper = document.getElementById('sidebar-wrapper');
