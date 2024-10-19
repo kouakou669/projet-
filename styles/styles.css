@@ -19,7 +19,6 @@ body {
   margin: 0;
   padding: 0;
   font-size: 14px;
-  text-align: center;
 }
 
 /* Titres */
@@ -336,6 +335,74 @@ footer.footer .social-link:hover {
 
 .img-hover-zoom:hover img {
   transform: scale(1.1);
+}
+
+/* Styles pour le menu */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Styles pour le menu latéral */
+#sidebar-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #007bff;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+#sidebar-wrapper.active {
+    display: block;
+    transform: translateX(0);
+}
+
+/* Optionnel : Style pour le fond en dehors du menu */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#sidebar-wrapper.active ~ .overlay {
+    display: block;
+}
+
+/* Style pour le bouton croix */
+.close-menu {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
 }
 
 /* Styles pour le menu */
