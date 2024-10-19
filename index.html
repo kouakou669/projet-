@@ -13,9 +13,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="styles/styles.css" rel="stylesheet">
 
-
-
-    
 </head>
 <body id="page-top">
 
@@ -239,16 +236,30 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebarWrapper = document.getElementById('sidebar-wrapper');
+            const closeMenu = document.getElementById('close-menu');
+            const overlay = document.querySelector('.overlay');
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                sidebarWrapper.classList.toggle('active'); // Ajoute ou enlève la classe active
+                overlay.style.display = sidebarWrapper.classList.contains('active') ? 'block' : 'none';
+            });
+
+            closeMenu.addEventListener('click', function() {
+                sidebarWrapper.classList.remove('active'); // Enlève la classe active
+                overlay.style.display = 'none'; // Masquer l'overlay
+            });
+
+            overlay.addEventListener('click', function() {
+                sidebarWrapper.classList.remove('active'); // Enlève la classe active
+                overlay.style.display = 'none'; // Masquer l'overlay
+            });
+        });
+    </script>
+
 </body>
-
-<!--scripts-->
-    <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="scripts/all-plugins.js"></script>
- 
-    <script type="text/javascript" src="script.js"></script>
-    
-    
 </html>
-
-
-
