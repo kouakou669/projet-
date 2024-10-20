@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Système d'authentification Duel-zone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        button {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .social-login button {
+            flex: 1;
+            margin: 0 0.5rem;
+        }
+        .google {
+            background-color: #db4437;
+        }
+        .facebook {
+            background-color: #4267B2;
+        }
+    </style>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function onSignIn(googleUser) {
+            const profile = googleUser.getBasicProfile();
+            const email = profile.getEmail();
+            const username = profile.getName();
+            sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
+            window.location.href = 'thoma.html';
+        }
+
+        function fbLogin() {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    FB.api('/me', {fields: 'name,email'}, function(response) {
+                        const email = response.email;
+                        const username = response.name;
+                        sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
+                        window.location.href = 'thoma.html';
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, {scope: 'email'});
+        }
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 'YOUR_FACEBOOK_APP_ID',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v12.0'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <h1>Connexion Duel-zone</h1>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+        <div class="social-login">
+            <button class="google" onclick="onSignIn()">Google</button>
+            <button class="facebook" onclick="fbLogin()">Facebook</button>
+        </div>
+        <p>Pas encore inscrit ? <a href="#" id="showRegister">S'inscrire</a></p>
+        <p id="loginError" class="error"></p>
+    </div>
+
+    <div class="container" id="registerContainer" style="display:none;">
+        <h1>Inscription Duel-zone</h1>
+        <form id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
+            <input type="email" id="registerEmail" placeholder="Email" required>
+            <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <div class="social-login">
+            <button class="google" onclick="onSignIn()">Google</button>
+            <button class="facebook" onclick="fbLogin()">Facebook</button>
+        </div>
+        <p>Déjà inscrit ? <a href="#" id="showLogin">Se connecter</a></p>
+        <p id="registerError" class="error"></p>
+    </div>
+
+    <script>
+        const loginContainer = document.getElementById('loginContainer');
+        const registerContainer = document.getElementById('registerContainer');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const loginError = document.getElementById('loginError');
+        const registerError = document.getElementById('registerError');
+
+        function showContainer(container) {
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'none';
+            container.style.display = 'block';
+        }
+
+        showRegister.addEventListener('click', () => showContainer(registerContainer));
+        showLogin.addEventListener('click', () => showContainer(loginContainer));
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            
+            if (users[email]) {
+                registerError.textContent = "Cet email est déjà utilisé.";
+                return;
+            }
+            
+            users[email] = { username, password };
+            localStorage.setItem('users', JSON.stringify(users));
+            sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
+            
+            window.location.href = 'thoma.html';
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            
+            if (users[email] && users[email].password === password && users[email].username === username) {
+                sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
+                window.location.href = 'thoma.html';
+            } else {
+                loginError.textContent = "Nom d'utilisateur, email ou mot de passe incorrect.";
+            }
+        });
+
+        window.addEventListener('load', () => {
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (currentUser) {
+                window.location.href = 'thoma.html';
+            } else {
+                showContainer(loginContainer);
+            }
+        });
+    </script>
+</body>
+</html>
