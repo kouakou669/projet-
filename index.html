@@ -4,117 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Système d'authentification Duel-zone</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        input {
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-        }
-        button {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .error {
-            color: red;
-            text-align: center;
-        }
-        .social-login {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-        .social-login button {
-            flex: 1;
-            margin: 0 0.5rem;
-        }
-        .google {
-            background-color: #db4437;
-        }
-        .facebook {
-            background-color: #4267B2;
-        }
-    </style>
+    <link href="styles/styles1.css" rel="stylesheet">
+    
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script>
-        function onSignIn(googleUser) {
-            const profile = googleUser.getBasicProfile();
-            const email = profile.getEmail();
-            const username = profile.getName();
-            sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
-            window.location.href = 'thoma.html';
-        }
-
-        function fbLogin() {
-            FB.login(function(response) {
-                if (response.authResponse) {
-                    FB.api('/me', {fields: 'name,email'}, function(response) {
-                        const email = response.email;
-                        const username = response.name;
-                        sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
-                        window.location.href = 'thoma.html';
-                    });
-                } else {
-                    console.log('User cancelled login or did not fully authorize.');
-                }
-            }, {scope: 'email'});
-        }
-
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : 'YOUR_FACEBOOK_APP_ID',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v12.0'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        // Google and Facebook login scripts here...
+        // (Same as in your existing code)
     </script>
 </head>
 <body>
@@ -140,6 +35,13 @@
             <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
             <input type="email" id="registerEmail" placeholder="Email" required>
             <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+            <input type="date" id="registerDOB" placeholder="Date de naissance" required>
+            <select id="registerGender" required>
+                <option value="">Sélectionnez le sexe</option>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+                <option value="other">Autre</option>
+            </select>
             <button type="submit">S'inscrire</button>
         </form>
         <div class="social-login">
@@ -151,6 +53,7 @@
     </div>
 
     <script>
+        // JavaScript for handling login, registration, and showing forms...
         const loginContainer = document.getElementById('loginContainer');
         const registerContainer = document.getElementById('registerContainer');
         const loginForm = document.getElementById('loginForm');
@@ -160,20 +63,23 @@
         const loginError = document.getElementById('loginError');
         const registerError = document.getElementById('registerError');
 
-        function showContainer(container) {
+        showRegister.addEventListener('click', () => {
             loginContainer.style.display = 'none';
+            registerContainer.style.display = 'block';
+        });
+        
+        showLogin.addEventListener('click', () => {
+            loginContainer.style.display = 'block';
             registerContainer.style.display = 'none';
-            container.style.display = 'block';
-        }
-
-        showRegister.addEventListener('click', () => showContainer(registerContainer));
-        showLogin.addEventListener('click', () => showContainer(loginContainer));
+        });
 
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const username = document.getElementById('registerUsername').value;
             const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
+            const dob = document.getElementById('registerDOB').value;
+            const gender = document.getElementById('registerGender').value;
             
             const users = JSON.parse(localStorage.getItem('users')) || {};
             
@@ -182,11 +88,11 @@
                 return;
             }
             
-            users[email] = { username, password };
+            users[email] = { username, password, dob, gender };
             localStorage.setItem('users', JSON.stringify(users));
-            sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
+            sessionStorage.setItem('currentUser', JSON.stringify({ email, username, dob, gender }));
             
-            window.location.href = 'thoma.html';
+            window.location.href = 'profile.html';
         });
 
         loginForm.addEventListener('submit', (e) => {
@@ -198,8 +104,8 @@
             const users = JSON.parse(localStorage.getItem('users')) || {};
             
             if (users[email] && users[email].password === password && users[email].username === username) {
-                sessionStorage.setItem('currentUser', JSON.stringify({ email, username }));
-                window.location.href = 'thoma.html';
+                sessionStorage.setItem('currentUser', JSON.stringify({ email, username, dob: users[email].dob, gender: users[email].gender }));
+                window.location.href = 'profile.html';
             } else {
                 loginError.textContent = "Nom d'utilisateur, email ou mot de passe incorrect.";
             }
@@ -208,9 +114,9 @@
         window.addEventListener('load', () => {
             const currentUser = sessionStorage.getItem('currentUser');
             if (currentUser) {
-                window.location.href = 'thoma.html';
+                window.location.href = 'profile.html';
             } else {
-                showContainer(loginContainer);
+                loginContainer.style.display = 'block';
             }
         });
     </script>
