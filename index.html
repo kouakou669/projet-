@@ -5,26 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Système d'authentification Duel-zone</title>
     <link href="styles/styles1.css" rel="stylesheet">
-    
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script>
-        // Google and Facebook login scripts here...
-        // (Same as in your existing code)
-    </script>
 </head>
 <body>
     <div class="container" id="loginContainer">
         <h1>Connexion Duel-zone</h1>
         <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
             <input type="email" id="loginEmail" placeholder="Email" required>
             <input type="password" id="loginPassword" placeholder="Mot de passe" required>
             <button type="submit">Se connecter</button>
+            <label>
+                <input type="checkbox" id="rememberMe"> Se souvenir de moi
+            </label>
         </form>
-        <div class="social-login">
-            <button class="google" onclick="onSignIn()">Google</button>
-            <button class="facebook" onclick="fbLogin()">Facebook</button>
-        </div>
         <p>Pas encore inscrit ? <a href="#" id="showRegister">S'inscrire</a></p>
         <p id="loginError" class="error"></p>
     </div>
@@ -35,25 +27,13 @@
             <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
             <input type="email" id="registerEmail" placeholder="Email" required>
             <input type="password" id="registerPassword" placeholder="Mot de passe" required>
-            <input type="date" id="registerDOB" placeholder="Date de naissance" required>
-            <select id="registerGender" required>
-                <option value="">Sélectionnez le sexe</option>
-                <option value="male">Homme</option>
-                <option value="female">Femme</option>
-                <option value="other">Autre</option>
-            </select>
             <button type="submit">S'inscrire</button>
         </form>
-        <div class="social-login">
-            <button class="google" onclick="onSignIn()">Google</button>
-            <button class="facebook" onclick="fbLogin()">Facebook</button>
-        </div>
         <p>Déjà inscrit ? <a href="#" id="showLogin">Se connecter</a></p>
         <p id="registerError" class="error"></p>
     </div>
 
     <script>
-        // JavaScript for handling login, registration, and showing forms...
         const loginContainer = document.getElementById('loginContainer');
         const registerContainer = document.getElementById('registerContainer');
         const loginForm = document.getElementById('loginForm');
@@ -62,61 +42,86 @@
         const showLogin = document.getElementById('showLogin');
         const loginError = document.getElementById('loginError');
         const registerError = document.getElementById('registerError');
+        const rememberMeCheckbox = document.getElementById('rememberMe');
+
+        // Chargement des données de connexion si "Se souvenir de moi" est activé
+        window.addEventListener('load', () => {
+            const storedEmail = localStorage.getItem('email');
+            const storedUsername = localStorage.getItem('username');
+            if (storedEmail && storedUsername) {
+                document.getElementById('loginEmail').value = storedEmail;
+                document.getElementById('registerUsername').value = storedUsername;
+            }
+            loginContainer.style.display = 'block';
+        });
 
         showRegister.addEventListener('click', () => {
             loginContainer.style.display = 'none';
             registerContainer.style.display = 'block';
         });
-        
+
         showLogin.addEventListener('click', () => {
             loginContainer.style.display = 'block';
             registerContainer.style.display = 'none';
         });
 
-        registerForm.addEventListener('submit', (e) => {
+        registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = document.getElementById('registerUsername').value;
             const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
-            const dob = document.getElementById('registerDOB').value;
-            const gender = document.getElementById('registerGender').value;
-            
-            const users = JSON.parse(localStorage.getItem('users')) || {};
-            
-            if (users[email]) {
-                registerError.textContent = "Cet email est déjà utilisé.";
-                return;
+
+            try {
+                const response = await fetch('http://localhost:3000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: username, email, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Inscription réussie ! Vous pouvez vous connecter.');
+                    showLogin.click();
+                } else {
+                    registerError.textContent = data.message || 'Erreur lors de l\'inscription.';
+                }
+            } catch (error) {
+                registerError.textContent = 'Erreur réseau.';
             }
-            
-            users[email] = { username, password, dob, gender };
-            localStorage.setItem('users', JSON.stringify(users));
-            sessionStorage.setItem('currentUser', JSON.stringify({ email, username, dob, gender }));
-            
-            window.location.href = 'profile.html';
         });
 
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
-            const users = JSON.parse(localStorage.getItem('users')) || {};
-            
-            if (users[email] && users[email].password === password && users[email].username === username) {
-                sessionStorage.setItem('currentUser', JSON.stringify({ email, username, dob: users[email].dob, gender: users[email].gender }));
-                window.location.href = 'profile.html';
-            } else {
-                loginError.textContent = "Nom d'utilisateur, email ou mot de passe incorrect.";
-            }
-        });
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
 
-        window.addEventListener('load', () => {
-            const currentUser = sessionStorage.getItem('currentUser');
-            if (currentUser) {
-                window.location.href = 'profile.html';
-            } else {
-                loginContainer.style.display = 'block';
+                const data = await response.json();
+                if (response.ok) {
+                    sessionStorage.setItem('token', data.token);
+                    if (rememberMeCheckbox.checked) {
+                        localStorage.setItem('email', email);
+                        localStorage.setItem('username', document.getElementById('registerUsername').value);
+                    } else {
+                        localStorage.removeItem('email');
+                        localStorage.removeItem('username');
+                    }
+                    window.location.href = 'profile.html';
+                } else {
+                    loginError.textContent = data.message || 'Erreur lors de la connexion.';
+                }
+            } catch (error) {
+                loginError.textContent = 'Erreur réseau.';
             }
         });
     </script>
