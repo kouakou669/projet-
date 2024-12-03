@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connexion et inscription à Duel-zone">
     <title>Système d'authentification Duel-zone</title>
-    <link href="styles/styles1.css" rel="stylesheet">
+
+<link href="style.css4" rel="stylesheet">
+
+    
 </head>
 <body>
     <div class="container" id="loginContainer">
         <h1>Connexion Duel-zone</h1>
-        <form id="loginForm">
-            <input type="email" id="loginEmail" placeholder="Email" required>
-            <input type="password" id="loginPassword" placeholder="Mot de passe" required>
-            <button type="submit">Se connecter</button>
+        <form id="loginForm" novalidate>
+            <input type="email" id="loginEmail" placeholder="Email" required autocomplete="email">
+            <div class="password-container">
+                <input type="password" id="loginPassword" placeholder="Mot de passe" required autocomplete="current-password">
+                <span class="toggle-password" onclick="togglePassword('loginPassword')">👁️</span>
+            </div>
             <label>
                 <input type="checkbox" id="rememberMe"> Se souvenir de moi
             </label>
+            <button type="submit">Se connecter</button>
         </form>
         <p>Pas encore inscrit ? <a href="#" id="showRegister">S'inscrire</a></p>
         <p id="loginError" class="error"></p>
@@ -23,10 +30,16 @@
 
     <div class="container" id="registerContainer" style="display:none;">
         <h1>Inscription Duel-zone</h1>
-        <form id="registerForm">
-            <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required>
+        <form id="registerForm" novalidate>
+            <input type="text" id="registerUsername" placeholder="Nom d'utilisateur" required minlength="3">
             <input type="email" id="registerEmail" placeholder="Email" required>
-            <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+            <div class="password-container">
+                <input type="password" id="registerPassword" placeholder="Mot de passe" required minlength="8">
+                <span class="toggle-password" onclick="togglePassword('registerPassword')">👁️</span>
+            </div>
+            <div class="strength-meter">
+                <div id="strengthIndicator"></div>
+            </div>
             <button type="submit">S'inscrire</button>
         </form>
         <p>Déjà inscrit ? <a href="#" id="showLogin">Se connecter</a></p>
@@ -34,96 +47,81 @@
     </div>
 
     <script>
-        const loginContainer = document.getElementById('loginContainer');
-        const registerContainer = document.getElementById('registerContainer');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const showRegister = document.getElementById('showRegister');
-        const showLogin = document.getElementById('showLogin');
-        const loginError = document.getElementById('loginError');
-        const registerError = document.getElementById('registerError');
-        const rememberMeCheckbox = document.getElementById('rememberMe');
+        let debounceTimer;
 
-        // Chargement des données de connexion si "Se souvenir de moi" est activé
-        window.addEventListener('load', () => {
-            const storedEmail = localStorage.getItem('email');
-            const storedUsername = localStorage.getItem('username');
-            if (storedEmail && storedUsername) {
-                document.getElementById('loginEmail').value = storedEmail;
-                document.getElementById('registerUsername').value = storedUsername;
-            }
-            loginContainer.style.display = 'block';
-        });
+        function debounce(func, wait) {
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(debounceTimer);
+                    func(...args);
+                };
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(later, wait);
+            };
+        }
 
-        showRegister.addEventListener('click', () => {
-            loginContainer.style.display = 'none';
-            registerContainer.style.display = 'block';
-        });
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
 
-        showLogin.addEventListener('click', () => {
-            loginContainer.style.display = 'block';
-            registerContainer.style.display = 'none';
-        });
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
 
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('registerUsername').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
+        function checkPasswordStrength(password) {
+            const indicator = document.getElementById('strengthIndicator');
+            let strength = 0;
+            
+            if (password.length >= 8) strength += 25;
+            if (password.match(/[A-Z]/)) strength += 25;
+            if (password.match(/[0-9]/)) strength += 25;
+            if (password.match(/[^A-Za-z0-9]/)) strength += 25;
 
+            indicator.style.width = `${strength}%`;
+            indicator.style.backgroundColor = 
+                strength <= 25 ? '#e74c3c' :
+                strength <= 50 ? '#f1c40f' :
+                strength <= 75 ? '#3498db' : '#2ecc71';
+        }
+
+        const handlePasswordInput = debounce((e) => {
+            checkPasswordStrength(e.target.value);
+        }, 300);
+
+        document.getElementById('registerPassword').addEventListener('input', handlePasswordInput);
+
+        async function submitForm(url, data, errorElement, successCallback) {
+            const button = errorElement.previousElementSibling.querySelector('button');
+            button.classList.add('loading');
+            
             try {
-                const response = await fetch('http://localhost:3000/register', {
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ name: username, email, password }),
+                    body: JSON.stringify(data),
                 });
 
-                const data = await response.json();
+                const responseData = await response.json();
+                
                 if (response.ok) {
-                    alert('Inscription réussie ! Vous pouvez vous connecter.');
-                    showLogin.click();
+                    successCallback(responseData);
                 } else {
-                    registerError.textContent = data.message || 'Erreur lors de l\'inscription.';
+                    errorElement.textContent = responseData.message || 'Une erreur est survenue.';
                 }
             } catch (error) {
-                registerError.textContent = 'Erreur réseau.';
+                errorElement.textContent = 'Erreur de connexion au serveur.';
+            } finally {
+                button.classList.remove('loading');
             }
-        });
+        }
 
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
+        // Le reste du code JavaScript reste similaire, mais utilisez les nouvelles fonctions
+        // ... (votre code existant pour les event listeners)
 
-            try {
-                const response = await fetch('http://localhost:3000/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
-                });
-
-                const data = await response.json();
-                if (response.ok) {
-                    sessionStorage.setItem('token', data.token);
-                    if (rememberMeCheckbox.checked) {
-                        localStorage.setItem('email', email);
-                        localStorage.setItem('username', document.getElementById('registerUsername').value);
-                    } else {
-                        localStorage.removeItem('email');
-                        localStorage.removeItem('username');
-                    }
-                    window.location.href = 'profile.html';
-                } else {
-                    loginError.textContent = data.message || 'Erreur lors de la connexion.';
-                }
-            } catch (error) {
-                loginError.textContent = 'Erreur réseau.';
-            }
-        });
     </script>
 </body>
 </html>
