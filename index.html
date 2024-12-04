@@ -74,16 +74,16 @@
             const indicator = document.getElementById('strengthIndicator');
             let strength = 0;
             
-            if (password.length >= 8) strength += 25;
-            if (password.match(/[A-Z]/)) strength += 25;
-            if (password.match(/[0-9]/)) strength += 25;
+            if (password.length >= 8) strength += 8;
+            if (password.match(/[A-Z]/)) strength += 8;
+            if (password.match(/[0-9]/)) strength += 8;
             if (password.match(/[^A-Za-z0-9]/)) strength += 25;
 
             indicator.style.width = `${strength}%`;
             indicator.style.backgroundColor = 
-                strength <= 25 ? '#e74c3c' :
-                strength <= 50 ? '#f1c40f' :
-                strength <= 75 ? '#3498db' : '#2ecc71';
+                strength <= 8 ? '#e74c3c' :
+                strength <= 16 ? '#f1c40f' :
+                strength <= 24 ? '#3498db' : '#2ecc71';
         }
 
         const handlePasswordInput = debounce((e) => {
